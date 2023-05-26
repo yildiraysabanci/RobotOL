@@ -14,3 +14,5 @@ Sinyalleşme sunucusunun temel işlevleri şunlardır:
 Sinyalleşme sunucusu, genellikle WebSocket, HTTPS veya HTTP üzerinde çalışan bir uygulama sunucusu olarak implemente edilir. Sinyalleşme protokolü olarak genellikle JSON veya SDP (Session Description Protocol) kullanılır. Bu protokoller aracılığıyla uygulamalar, gerekli bağlantı bilgilerini alışveriş eder ve doğru bağlantıları kurar.
 
 Önemli bir nokta, WebRTC sinyalleşme sunucusunun sadece iletişim bilgilerini paylaşmak için kullanıldığıdır. Veri veya medya iletimi doğrudan kullanıcılar
+
+ arasında gerçekleşir. Sinyalleşme sunucusu, bağlantı oluşturmak ve uygun parametreleri paylaşmak için bir araç olarak kullanılır.
