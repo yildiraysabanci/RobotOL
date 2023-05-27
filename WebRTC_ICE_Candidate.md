@@ -1,9 +1,10 @@
 
 ![WebRTC_block_diagram (7)](https://github.com/yildiraysabanci/RobotOL/assets/98615464/3bba8b22-8f1c-4daa-9bb7-35766e37b9d9)
+# WebRTC ICE Cadidate<br>
 
 WebRTC'de kullanılan ICE (Interactive Connectivity Establishment) adayları, peer-to-peer bağlantı kurmak için kullanılan ağ bağlantı noktalarını temsil eder. ICE adayları, her bir cihazın ağ üzerindeki IP adresleri, port numaraları ve NAT türleri gibi ağ bilgilerini içerir. ICE adayları, bağlantı noktalarının keşfedilmesi ve doğru bağlantıların oluşturulması için kullanılır.
 
-ICE adaylarının işlevi aşağıdaki adımları içerir:
+## ICE adaylarının işlevi aşağıdaki adımları içerir
 
 1. Adayların Oluşturulması: Her WebRTC uygulaması, kendi cihazının bağlantı noktalarına (IP adresleri ve port numaraları) ait adayları oluşturur. Bu adaylar, kullanılan ağa ve NAT türüne bağlı olarak farklı olabilir.
 
