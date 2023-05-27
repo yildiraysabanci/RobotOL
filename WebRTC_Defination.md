@@ -1,7 +1,7 @@
 ![WebRTC_block_diagram (1)](https://github.com/yildiraysabanci/RobotOL/assets/98615464/c9b122c0-8a51-42b9-8925-c968851cbdd9)
 
 
-
+#foobar
   Yukarida çizimi yapılmış olan şekil, RobotOL ekibi tarafından gerçekleştirilmesi planlanan bir projenin internet altyapısında kullanılması amaçlanan WebRTC teknolojisinin blok diyagramını göstermektedir.
 
 WebRTC (Web Real-Time Communication), açık bir web standartı olarak geliştirilen ve gerçek zamanlı iletişim ve medya paylaşımı için kullanılan bir teknolojidir. İnternet tarayıcıları arasında doğrudan peer-to-peer bağlantılar kurarak, kullanıcıların ses, video ve veri paylaşımı yapmalarını sağlar.
