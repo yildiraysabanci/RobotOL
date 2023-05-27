@@ -1,4 +1,4 @@
-![WebRTC_block_diagram (2)](https://github.com/yildiraysabanci/RobotOL/assets/98615464/354d702e-5b9b-4162-85fb-839dae6f706c)
+![WebRTC_block_diagram (1)](https://github.com/yildiraysabanci/RobotOL/assets/98615464/c9b122c0-8a51-42b9-8925-c968851cbdd9)
 
 
 
