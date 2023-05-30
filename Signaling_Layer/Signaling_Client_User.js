@@ -1,5 +1,5 @@
 const io = require('socket.io-client');
-const socket = io.connect('http://95.12.41.109:3000');
+const socket = io.connect('http://<Signaling_Server_Public_IP>:3000');
 // Bağlantı odası ve kullanıcı kimliği
 const roomId = 'myRoom';
 const userId = 'myUser';
