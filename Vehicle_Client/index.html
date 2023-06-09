@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Video Ekranı</title>
+  <style>
+    video {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <video id="videoElement" autoplay></video>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+  <script>
+    const socket = io.connect('http://78.170.254.70:8000', {
+      transports: ['websocket'],
+      cors: {
+        origin: '*',
+      },
+    }); // Sunucu adresini doğru şekilde ayarlayın
+    const roomId = 'myRoom'; // Oda kimliği
+    const userId = 'myUser'; // Kullanıcı kimliği
+
+    // Sinyal mesajını gönderme
+    function sendSignal(targetUserId, signal) {
+      socket.emit('signal', roomId, targetUserId, signal);
+    }
+
+    // WebRTC bağlantısı kurulduğunda veya sinyal alındığında
+    socket.on('signal', (sourceUserId, signal) => {
+      // Sinyali işleyin ve WebRTC bağlantısını kurun
+      console.log(`Sinyal alındı: Kaynak Kullanıcı: ${sourceUserId}, Sinyal:`, signal);
+      // WebRTC bağlantısı için gerekli işlemleri yapın
+      // ...
+    });
+
+    // Mesaj gönderme işlemi
+    function sendMessage(message) {
+      const messageObject = {
+        sender: userId,
+        message: message,
+      };
+      socket.emit('message', messageObject);
+    }
+
+    // Sunucuya katılma mesajını gönderme
+    socket.emit('join', roomId, userId);
+
+    // SDP dosyasını sunucuya gönderme
+    function sendSDP(sdp) {
+      socket.emit('sdp', sdp);
+    }
+
+    // Sunucudan gelen SDP dosyasını alma
+    socket.on('sdp', function (sdp) {
+      // SDP dosyasını işleme
+      processSDP(sdp);
+    });
+
+    // İşlenmiş SDP dosyasını kullanarak bağlantıyı kurma vb. işlemleri gerçekleştirme
+    function processSDP(sdp) {
+      // SDP dosyasını kullanarak bağlantıyı kurma veya işlemleri gerçekleştirme
+      // ...
+    }
+
+    // SDP dosyasını oluşturma ve sunucuya gönderme işlemlerini gerçekleştirme
+    async function createAndSendSDP() {
+      try {
+        const response = await fetch('http://localhost:8001/stream');
+        const stream = await response.body.getReader();
+        const videoElement = document.getElementById('videoElement');
+        
+        while (true) {
+          const { done, value } = await stream.read();
+          if (done) break;
+          videoElement.src = URL.createObjectURL(value);
+        }
+
+        // RTCPeerConnection nesnesini oluşturma
+        const peerConnection = new RTCPeerConnection();
+
+        // Medya akışlarını ekleyin (örneğin, ses ve video)
+        videoElement.srcObject.getTracks().forEach((track) => peerConnection.addTrack(track, videoElement.srcObject));
+
+        // SDP dosyasını oluşturma
+        const offer = await peerConnection.createOffer();
+        await peerConnection.setLocalDescription(offer);
+        const sdp = peerConnection.localDescription;
+
+        // Oluşturulan SDP dosyasını kullanma veya sunucuya gönderme
+        // ...
+
+        // SDP dosyasını sunucuya gönderme
+        sendSDP(sdp);
+      } catch (error) {
+        console.error('Medya akışını almak için izin verilmedi:', error);
+      }
+    }
+
+    // SDP dosyasını oluştur ve sunucuya gönder
+    createAndSendSDP();
+
+    // Kullanıcıdan mesaj al ve gönder
+    const readline = require('readline');
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    rl.on('line', (input) => {
+      sendMessage(input);
+    });
+  </script>
+</body>
+
+</html>
